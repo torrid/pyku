@@ -1,18 +1,25 @@
 
 
 # install docker, dockerd
-sudo pacman -S docker ethtool wget unzip containerd
+sudo pacman -Sy docker ethtool wget unzip containerd
 # install kubernetes
-sudo pacman -S kubectl kubernetes-control-plane kubernetes-node containerd
+sudo pacman -Sy kubectl kubernetes-control-plane kubernetes-node containerd
+# install python/pip
+sudo pacman -Sy python-pip
 
 # install etcd
-sudo pacman -S go 
+sudo pacman -Sy go 
 mkdir ~/pkg
 git clone https://aur.archlinux.org/etcd.git
 cd etcd
 makepkg 
 sudo pacman -U etcd-.*.pkg.tar.zst 
 
+# misc stuff 
+sudo pacman -Sy stress 
+
+# install necessary python modules
+pip3 install kubernetes psutil flask  
 
 
 # Flask Workload
