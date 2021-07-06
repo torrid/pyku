@@ -2,12 +2,12 @@ This source installs and configures a (local) kubernetes cluster from scratch,
 and deploys a Python/Flask workload onto 2 nodes, providing a way to create and
 measure CPU load on them.  
 
-The purpose of this rather academic project is to get to know how K8s works and
-acts, and to learn how to communicate with the nodes. 
+The purpose of this rather academic project is to get into K8s and to learn how
+to communicate with the nodes. 
 
 Since I had to start somewhere, I assume a regular Linux user with sudo/root
 access, and the group names "kube" and "docker" for the respective services.
-"Works on my machine" (Arch linux t2.micro EC2 instance). 
+"Works on my machine©" (Arch linux t2.micro EC2 instance). 
 
 ### Install docker, dockerd, kubernetes, pip, the stress cmdline tool
 ```bash
