@@ -23,8 +23,18 @@ cd ../..
 # !!! DOUBLE check to mention same dependencies in $app/docker/Dockerfile
 sudo pip3 install kubernetes psutil flask  
 
+
+
 # Flask Workload
-mkdir -p ~/Src/pyku && cd ~/Src/pyku 
-git clone https://github.com/JasonHaley/hello-python.git
+.
+├── app
+│   ├── main.py
+│   └── requirements.txt
+├── docker
+│   └── Dockerfile
+├── kubernetes
+│   └── deployment.yaml
+├── LICENSE
+└── README.md
 
 
