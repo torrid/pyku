@@ -30,17 +30,17 @@ def hello():
 def stress():
     # out=Popen(["/usr/bin/stress", "--cpu", "1", "--timeout", "%s"%STRESSTIME])
 	cpustress(STRESSTIME)
-	return "Host: %s %ss stress." % (host, STRESSTIME)
+	return "Host: %s %ss stress.\n" % (host, STRESSTIME)
 
 @app.route("/cpu")
 def cpu():
     # out=cpu_percent(interval=0.2)
     out=getloadavg()[0]
-    return "Host: %s, CPU load: %s" %(host, out)
+    return "Host: %s, CPU load: %s\n" %(host, out)
 
 @app.route("/insight")
 def insight():
-	return str(environ)
+	return "\n%s\n" % str(environ)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
