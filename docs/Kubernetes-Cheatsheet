@@ -1,0 +1,8 @@
+
+kubeadm reset 
+
+### 
+kubectl -n kube-system get cm kubeadm-config -o yaml
+
+kubeadm join 172.31.0.99:6443 --token 68vq5i.ntmk27xtqhjzirjd --discovery-token-ca-cert-hash sha256:1af6ba489802c2b1d2f1cb9f5fd96e945039b98ea790067b2da6c752dae95206 
+
