@@ -7,7 +7,7 @@ to communicate with the nodes.
 
 Since I had to start somewhere, I assume a regular Linux user with sudo/root
 access, and the group names "kube" and "docker" for the respective services.
-"Works on my machine©" (Arch linux t2.micro EC2 instance). 
+*Works on my machine™* (Arch linux t3.small EC2 instance). 
 
 ### Install docker, dockerd, kubernetes, pip, the stress cmdline tool
 ```bash
