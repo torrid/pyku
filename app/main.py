@@ -1,12 +1,27 @@
 from flask import Flask
 from subprocess import Popen
 from psutil import cpu_percent,getloadavg
-from os import environ
+from os import environ,getenv
+from time import time 
 
 app = Flask(__name__)
 
 STRESSTIME=60
-pod="main"
+host=getenv('HOSTNAME')
+
+
+def cpustress(seconds):
+    assert type(seconds) == type(1) and seconds < 120
+    start=time()
+    while True:
+        a=1
+        while a < 1000:
+            x=a*a
+            x=1.3333*x/(a+3.333)
+            a+=1
+
+        if (time() - start) > seconds:
+            break
 
 @app.route("/")
 def hello():
@@ -14,21 +29,19 @@ def hello():
 
 @app.route("/stress")
 def stress():
-    out=Popen(["/usr/bin/stress", "--cpu", "1", "--timeout", "%s"%STRESSTIME])
-    return "60 Seconds CPU stress."
+    # out=Popen(["/usr/bin/stress", "--cpu", "1", "--timeout", "%s"%STRESSTIME])
+	cpustress(STRESSTIME)
+	return "Host: %s %ss stress." % (host, STRESSTIME)
 
 @app.route("/cpu")
 def cpu():
     # out=cpu_percent(interval=0.2)
     out=getloadavg()[0]
-    return "CPU load: %s" %(out)
+    return "Host: %s, CPU load: %s" %(host, out)
 
 @app.route("/insight")
 def insight():
-env=environ()
-	return env
-
-
+	return str(environ)
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port=5000)
