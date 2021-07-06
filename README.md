@@ -1,23 +1,24 @@
-This source install a (local) kubernetes cluster from scratch, and deploys a
-Python/Flask workload onto 2 nodes, providing a way to create and measure CPU
-load on them. 
-Since I had to start somewhere, I assume a regular Linux user with sudo/root
-access, and the group names "kube" and "docker" for the respective services. As
-the elder say, "Works on my machine" (Arch linux micro EC2 instance).  
+This source installs and configures a (local) kubernetes cluster from scratch,
+and deploys a Python/Flask workload onto 2 nodes, providing a way to create and
+measure CPU load on them.  
+
 The purpose of this rather academic project is to get to know how K8s works and
 acts, and to learn how to communicate with the nodes. 
 
+Since I had to start somewhere, I assume a regular Linux user with sudo/root
+access, and the group names "kube" and "docker" for the respective services.
+"Works on my machine" (Arch linux t2.micro EC2 instance). 
 
-# install docker, dockerd
+### install docker, dockerd
 sudo pacman -Sy docker ethtool wget unzip containerd
-# install kubernetes
+### install kubernetes
 sudo pacman -Sy kubectl kubernetes-control-plane kubernetes-node kubeadm
-# install python/pip
+### install python/pip
 sudo pacman -Sy python-pip
-# misc stuff 
+### misc stuff 
 sudo pacman -Sy stress 
 
-# install etcd
+### install etcd
 sudo pacman -Sy go 
 mkdir pkg && cd pkg
 git clone https://aur.archlinux.org/etcd.git
@@ -26,7 +27,7 @@ makepkg
 sudo pacman -U etcd-.*.pkg.tar.zst 
 cd ../..
 
-# install necessary python modules
+### install necessary python modules
 # sudo pip makes sure to install the necessary Python modules system-wide.
 # !!! DOUBLE check to mention same dependencies in $app/docker/Dockerfile
 sudo pip3 install kubernetes psutil flask  
@@ -34,6 +35,7 @@ sudo pip3 install kubernetes psutil flask
 
 
 # Flask Workload
+The 
 .
 ├── app
 │   ├── main.py
