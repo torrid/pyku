@@ -36,6 +36,9 @@ sudo pip3 install kubernetes psutil flask
 
 
 ### Flask Workload
+This was taken from https://github.com/JasonHaley/hello-python.git, and
+extended by the CPU stressing and Load Average functions.
+
 ```
 .
 ├── app
@@ -65,3 +68,5 @@ sudo cp -i /etc/kubernetes/admin.conf ~/.kube/config
 sudo chown :kube ~/.kube/config
 sudo chmod chmod g+rw .kube/config
 ```
+
+
