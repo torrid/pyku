@@ -19,6 +19,7 @@ access, and the group names "kube" and "docker" for the respective services.
 `sudo pacman -Sy stress`
 
 ### install etcd
+```bash
 sudo pacman -Sy go 
 mkdir pkg && cd pkg
 git clone https://aur.archlinux.org/etcd.git
@@ -26,7 +27,7 @@ cd etcd
 makepkg 
 sudo pacman -U etcd-.*.pkg.tar.zst 
 cd ../..
-
+```
 ### install necessary python modules
 #### sudo pip makes sure to install the necessary Python modules system-wide.
 #### !!! DOUBLE check to mention same dependencies in $app/docker/Dockerfile
