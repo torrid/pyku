@@ -9,7 +9,6 @@ app = Flask(__name__)
 STRESSTIME=60
 host=getenv('HOSTNAME')
 
-
 def cpustress(seconds):
     assert type(seconds) == type(1) and seconds < 120
     start=time()
