@@ -38,7 +38,6 @@ sudo pip3 install kubernetes psutil flask
 ### Flask Workload
 This was taken from https://github.com/JasonHaley/hello-python.git, and
 extended by the CPU stressing and Load Average functions.
-
 ```
 .
 ├── app
@@ -53,20 +52,13 @@ extended by the CPU stressing and Load Average functions.
 ```
 ### Init and start cluster.
 ```bash
-sudo systemctl enable kubelet && sudo systemctl start kubelet
-sudo systemctl enable docker  && sudo systemctl start docker 
-sudo groupadd docker kube  		# this may fail, since the groups are created at installation 
-sudo usermod -a -G docker,kube $USER
+sudo usermod -a -G docker $USER
 sudo su - $USER 				# relogin with new group env. 
-sudo kubeadm init --pod-network-cidr=10.10.0.0/16 --ignore-preflight-errors=NumCPU,Mem
-# !!! Opening the permissions for the kubelet certificate to the kube group. 
-# !!! I would rather ask a Kubernetes Guru for enlightenment on that.
-sudo chgrp kube /var/lib/kubelet/pki/kubelet*pem
-sudo chmod g+r /var/lib/kubelet/pki/kubelet*pem
-mkdir -p ~/.kube
-sudo cp -i /etc/kubernetes/admin.conf ~/.kube/config
-sudo chown :kube ~/.kube/config
-sudo chmod chmod g+rw .kube/config
+minikube start
 ```
+
+### Build and Deploy docker image
+```
+docker build -t load-and-stress . 
 
 
