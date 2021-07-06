@@ -58,7 +58,33 @@ minikube start
 ```
 
 ### Build and Deploy docker image
+```bash
+docker build -f Dockerfile -t load-and-stress:latest . 
+docker run -p 5001:5000 load-and-stress
 ```
-docker build -t load-and-stress . 
 
+### Initialize Kubernetes & Deploy on Kubernetes
+
+```bash 
+docker image rm load-and-stress
+docker build -t load-and-stress .  
+minikube start
+eval $(minikube docker-env) 
+kubectl apply -f deployment.yaml
+kubectl replace --force -f deployment.yaml 
+kubectl expose deployment load-and-stress --type=LoadBalancer --port=8080
+minikube tunnel > /dev/null 2>&1 & 
+
+docker build -t load-and-stress .  
+minikube start
+eval $(minikube docker-env) 
+kubectl apply -f deployment.yaml
+kubectl replace --force -f deployment.yaml 
+kubectl expose deployment load-and-stress --type=LoadBalancer --port=8080
+minikube tunnel > /dev/null 2>&1 & 
+
+url=$(kubectl  get svc | grep load-and-stress | grep 8080| sed -e 's#  *#\t#gi'|\
+     cut -f 4,5 | cut -f 1 -d:| sed -e 's#\t#:#'
+echo "http://${url}/"
+```
 
