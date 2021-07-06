@@ -1,5 +1,2 @@
 Flask
-kubernetes
 psutil
-pystress
-
