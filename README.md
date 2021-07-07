@@ -43,7 +43,7 @@ cd ../..
 sudo pip install -r requirements.txt
 ```
 Doing sudo pip makes sure to install the necessary Python modules system-wide. 
-Only needed for testing
+(Only needed for locally testing main.py.)
 
 
 ### Flask Workload
