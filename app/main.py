@@ -1,12 +1,12 @@
 from flask import Flask
-from subprocess import Popen
+# from subprocess import Popen
 from psutil import cpu_percent,getloadavg
 from os import environ,getenv
 from time import time 
 
 app = Flask(__name__)
 
-STRESSTIME=60
+STRESSTIME=5
 host=getenv('HOSTNAME')
 
 def cpustress(seconds):
@@ -16,7 +16,7 @@ def cpustress(seconds):
         a=1
         while a < 1000:
             x=a*a
-            x=1.3333*x/(a+3.333)
+            x=1.3333*x/(a+7.7777)
             a+=1
 
         if (time() - start) > seconds:
