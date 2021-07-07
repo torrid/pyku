@@ -1,14 +1,25 @@
 This source installs and configures a (local) kubernetes cluster from scratch,
-and deploys a Python/Flask workload onto n nodes, providing a way to create and
+and deploys a Python/Flask workload onto *n* nodes, providing a way to create and
 measure CPU load on them.  
 
 The purpose of this rather academic project is to get into K8s and to learn how
-to communicate with the nodes. 
+to communicate with the Pods/Deployment. 
 
 Since I had to start somewhere, I assume a regular Linux user with sudo/root
 access, and the group names "kube" and "docker" for the respective services.
 
-*Works on my machine™.* (Arch Linux t3.small EC2 instance)
+### Notes
+I got stuck in the Routing and Proxying realm of K8s, so the Loadbalancer
+Deployment doesn't work yet and the fun part begins only there: Do statistics
+over different scenarios and – ultimately – provide fancy graphics! 
+
+Usually one would use the "stress" cmdline tool for this kind of scenario, but
+I resorted to some simple Float arithmetics for now.
+
+I also had to considerably upgrade my "machine" on AWS:
+Kubernetes, even Minikube just doesn't want to run on 1 CPU core, with
+never-enough RAM. On the bright side, vertically scaling an EC2 instance is
+*really* easy. 
 
 ### Install docker, dockerd, kubernetes, pip, the stress cmdline tool
 ```bash
