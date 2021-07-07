@@ -71,6 +71,9 @@ echo "http://${url}/"
 | /stress | Create CPU load for 60 seconds. | hostname, seconds
 | /cpu | Return LoadAverage (psutil.getloadavg()[0]) | hostname, load
 | /insight | Environment of the current pod/process. | environment
-| / | | "Hello Python!"
 
+### Links 
 
+ * [Minikube](https://minikube.sigs.k8s.io/docs/handbook/)
+ * [Flask](https://flask.palletsprojects.com/en/2.0.x/)
+ * [Python on Kubernetes](https://kubernetes.io/blog/2019/07/23/get-started-with-kubernetes-using-python/)
