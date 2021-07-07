@@ -1,12 +1,14 @@
-This source installs and configures a (local) kubernetes cluster from scratch,
+This source installs and configures a (local) Kubernetes cluster from scratch,
 and deploys a Python/Flask workload onto *n* nodes, providing a way to create and
 measure CPU load on them.  
 
 The purpose of this rather academic project is to get into K8s and to learn how
 to communicate with the Pods/Deployment. 
 
-Since I had to start somewhere, I assume a regular Linux user with sudo/root
-access, and the group names "kube" and "docker" for the respective services.
+Since I had to start somewhere, I'm assuming a regular Linux user with
+sudo/root access, and the group names "kube" and "docker" for the respective
+services. I used Arch Linux/Pacman on my test, a realistic scenario would be
+it's own instance with Alpine Linux.
 
 ### Notes
 I got stuck in the Routing and Proxying realm of K8s, so the Loadbalancer
@@ -14,7 +16,7 @@ Deployment doesn't work yet and the fun part begins only there: Do statistics
 over different scenarios and – ultimately – provide fancy graphics! 
 
 Usually one would use the "stress" cmdline tool for this kind of scenario, but
-I resorted to some simple Float arithmetics for now.
+I resorted to some simple Float arithmetics for now. 
 
 I also had to considerably upgrade my host on AWS:
 Kubernetes, even Minikube just doesn't run nicely on 1 vcore, with never-enough
@@ -23,6 +25,8 @@ scaling MyLittleEC2 instance was *really* easy.
 
 The stress method returns only after $STRESSTIME seconds, which is braindead.
 I'd solve that with fork/SIGALARM IPC, if I had the time. 
+
+Flask daemon should return plain json. 
 
 ### Install docker, dockerd, kubernetes, pip, the stress cmdline tool
 ```bash
