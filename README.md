@@ -49,13 +49,7 @@ extended by the CPU stressing and Load Average functions.
 └── README.md
 ```
 
-### Build and Deploy docker image
-```bash
-docker build -f Dockerfile -t load-and-stress:latest . 
-docker run -p 5001:5000 load-and-stress
-```
-
-### Initialize Kubernetes & Deploy on Kubernetes
+### Install Workload on Docker and Kubernetes
 
 ```bash 
 docker image rm load-and-stress
@@ -72,10 +66,11 @@ echo "http://${url}/"
 
 ### Methods
 
-| Url | Description | Output |
-| --- | --- | --- |
+| Url | Description | Output 
+| --- | --- | --- 
 | /stress | Create CPU load for 60 seconds. | hostname, seconds
 | /cpu | Return LoadAverage (psutil.getloadavg()[0]) | hostname, load
 | /insight | Environment of the current pod/process. | environment
+| / | | "Hello Python!"
 
 
