@@ -12,9 +12,8 @@ access, and the group names "kube" and "docker" for the respective services.
 ### Install docker, dockerd, kubernetes, pip, the stress cmdline tool
 ```bash
 sudo pacman -Sy docker ethtool wget unzip containerd
-sudo pacman -Sy kubectl kubernetes-control-plane kubernetes-node kubeadm
+sudo pacman -Sy minikube
 sudo pacman -Sy python-pip
-sudo pacman -Sy stress
 ```
 
 ### Install etcd from AUR (https://aur.archlinux.org/etcd.git)
@@ -29,9 +28,8 @@ cd ../..
 ```
 ### Install necessary python modules
 (Doing sudo pip makes sure to install the necessary Python modules system-wide.)
-!!! DOUBLE check to mention same dependencies in $app/docker/Dockerfile
 ```bash
-sudo pip3 install kubernetes psutil flask  
+sudo pip install -r requirements.txt
 ```
 
 
@@ -49,12 +47,6 @@ extended by the CPU stressing and Load Average functions.
 │   └── deployment.yaml
 ├── LICENSE
 └── README.md
-```
-### Init and start cluster.
-```bash
-sudo usermod -a -G docker $USER
-sudo su - $USER 				# relogin with new group env. 
-minikube start
 ```
 
 ### Build and Deploy docker image
@@ -74,16 +66,16 @@ kubectl apply -f deployment.yaml
 kubectl replace --force -f deployment.yaml 
 kubectl expose deployment load-and-stress --type=LoadBalancer --port=8080
 minikube tunnel > /dev/null 2>&1 & 
-
-docker build -t load-and-stress .  
-minikube start
-eval $(minikube docker-env) 
-kubectl apply -f deployment.yaml
-kubectl replace --force -f deployment.yaml 
-kubectl expose deployment load-and-stress --type=LoadBalancer --port=8080
-minikube tunnel > /dev/null 2>&1 & 
-
 url=$(kubectl get svc|grep load-and-stress|grep 8080| sed -e 's#  *#\t#gi'| cut -f 4,5 | cut -f 1 -d:| sed -e 's#\t#:#')
 echo "http://${url}/"
 ```
+
+### Methods
+
+| Url | Description | Output |
+| --- | --- | --- |
+| /stress | Create CPU load for 60 seconds. | hostname, seconds
+| /cpu | Return LoadAverage (psutil.getloadavg()[0]) | hostname, load
+| /insight | Environment of the current pod/process. | environment
+
 
