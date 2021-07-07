@@ -16,10 +16,13 @@ over different scenarios and – ultimately – provide fancy graphics!
 Usually one would use the "stress" cmdline tool for this kind of scenario, but
 I resorted to some simple Float arithmetics for now.
 
-I also had to considerably upgrade my "machine" on AWS:
-Kubernetes, even Minikube just doesn't want to run on 1 CPU core, with
-never-enough RAM. On the bright side, vertically scaling an EC2 instance is
-*really* easy. 
+I also had to considerably upgrade my host on AWS:
+Kubernetes, even Minikube just doesn't run nicely on 1 vcore, with never-enough
+RAM, and it wouldn't provide useful data anyway. On the bright side, vertically
+scaling MyLittleEC2 instance was *really* easy. 
+
+The stress method returns only after $STRESSTIME seconds, which is braindead.
+I'd solve that with fork/SIGALARM IPC, if I had the time. 
 
 ### Install docker, dockerd, kubernetes, pip, the stress cmdline tool
 ```bash
