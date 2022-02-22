@@ -15,7 +15,7 @@ I got stuck in the Routing and Proxying realm of K8s, so the Loadbalancer
 Deployment doesn't work yet and the fun part begins only there: Do statistics
 over different scenarios and – ultimately – provide fancy graphics! 
 
-Usually one would use the "stress" cmdline tool for this kind of scenario, but
+Usually one would use the stress/stress_ng cmdline tool for this kind of scenario, but
 I resorted to some simple Float arithmetics for now. 
 
 I also had to considerably upgrade my host on AWS:
